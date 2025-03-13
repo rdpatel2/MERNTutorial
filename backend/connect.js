@@ -3,6 +3,7 @@ require("dotenv").config({ path: "./config.env" });
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(process.env.ATLAS_URI, {
+  // Connection string, store this in hidden folders if the file is going to be public
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
@@ -10,14 +11,17 @@ const client = new MongoClient(process.env.ATLAS_URI, {
   },
 });
 
-let database;
+let database; // Variable to allow quick access to our data base
 
 module.exports = {
+  // Like an export default in React
   connectToServer: () => {
-    database = client.db("blogData");
+    // A function we want to export
+    database = client.db("blogData"); // Connects to the database named "blogData"
   },
   getDb: () => {
-    return database;
+    // A function we want to export
+    return database; // Returns the database
   },
 };
 
